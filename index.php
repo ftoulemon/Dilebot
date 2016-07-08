@@ -7,7 +7,10 @@
     <h1>IRC bot</h1>
 
     <form action="send.php" method="post">
-        <input type="text" name="name"><br>
+        Destination:</br>
+        <input type="text" name="destination" value="#moule"><br>
+        Message:</br>
+        <input type="text" name="message"><br>
         <input type="submit">
     </form>
 
