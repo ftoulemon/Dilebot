@@ -2,6 +2,8 @@
 package main
 
 import (
+    "encoding/json"
+    "io/ioutil"
     "os"
     "fmt"
     irc "github.com/fluffle/goirc/client"
@@ -12,6 +14,11 @@ func sendMessage(conn *irc.Conn, destination string, message string) {
     conn.Quit("Work done!")
 }
 
+type Config struct {
+    Name string
+    Password string
+}
+
 func main() {
     if len(os.Args) != 3 {
         fmt.Println("Parameter error")
@@ -19,6 +26,20 @@ func main() {
     }
     destination := os.Args[1]
     message := os.Args[2]
+
+    // read the config file
+    file, e := ioutil.ReadFile("./config.json")
+    if e != nil {
+        fmt.Printf("Config file error: %v\n", e)
+        os.Exit(1)
+    }
+    // decode the configuration
+    var config Config
+    err := json.Unmarshal(file, &config)
+    if err != nil {
+        fmt.Printf("Decoding error: %v\n", err)
+        os.Exit(1)
+    }
 
     cfg := irc.NewConfig("Dilebot")
     //cfg.SSL = true
@@ -49,7 +70,7 @@ func main() {
     c.HandleFunc(irc.CONNECTED,
         func(conn *irc.Conn, line *irc.Line) {
             fmt.Printf("Connect handler\n")
-            conn.Privmsg("nickserv", "identify test")
+            conn.Privmsg("nickserv", "identify " + config.Name + " " + config.Password)
         })
 
     // Handle disconnect
