@@ -1,6 +1,11 @@
 <html>
     <head>
         <title>IRC bot</title>
+        <style>
+            p.output {
+                font-family: "Lucida Console", Monaco, monospace;
+            }
+        </style>
     </head>
     <body style="background-color:black; color:lightgrey;">
 
@@ -9,11 +14,15 @@
 
     <p>Output:</p>
 
+    <p class="output">
     <?php
         $command = "./dilebot " . $_POST["destination"] . " \"" . $_POST["message"] . "\" 2>&1";
         exec($command, $output, $return_val);
-        var_dump($output);
+        foreach($output as $line) {
+            echo $line . "</br>";
+        }
     ?>
+    </p>
 
     </body>
 </html>
