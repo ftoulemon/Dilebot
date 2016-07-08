@@ -7,14 +7,18 @@ import (
     irc "github.com/fluffle/goirc/client"
 )
 
+func sendMessage(conn *irc.Conn, destination string, message string) {
+    conn.Privmsg(destination, message)
+    conn.Quit("Work done!")
+}
+
 func main() {
-    if len(os.Args) != 2 {
+    if len(os.Args) != 3 {
         fmt.Println("Parameter error")
         os.Exit(1)
     }
-    toSend := os.Args[1]
-    fmt.Println(toSend)
-
+    destination := os.Args[1]
+    message := os.Args[2]
 
     cfg := irc.NewConfig("Dilebot")
     //cfg.SSL = true
@@ -26,15 +30,19 @@ func main() {
     c.HandleFunc(irc.JOIN,
         func(conn *irc.Conn, line *irc.Line) {
             fmt.Printf("Join handler\n")
-            conn.Privmsg("#taiste", os.Args[1])
-            conn.Quit("Work done!")
+            sendMessage(conn, destination, message)
         })
 
     // Mode handler
     c.HandleFunc(irc.MODE,
         func(conn *irc.Conn, line *irc.Line) {
             fmt.Printf("Mode handler\n")
-            conn.Join("#taiste")
+            if (destination[0] == '#') {
+                // if channel, join the channel
+                conn.Join(destination)
+            } else {
+                sendMessage(conn, destination, message)
+            }
         })
 
     // join channel on connect
