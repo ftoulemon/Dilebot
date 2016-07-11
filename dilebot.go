@@ -15,7 +15,8 @@ func sendMessage(conn *irc.Conn, destination string, message string) {
 }
 
 type Config struct {
-    Name string
+    Nick string
+    Username string
     Password string
 }
 
@@ -41,7 +42,7 @@ func main() {
         os.Exit(1)
     }
 
-    cfg := irc.NewConfig("Dilebot")
+    cfg := irc.NewConfig(config.Nick)
     //cfg.SSL = true
     cfg.Server = "irc.rezosup.org"
     cfg.NewNick = func(n string) string { return n + "_" }
@@ -70,7 +71,7 @@ func main() {
     c.HandleFunc(irc.CONNECTED,
         func(conn *irc.Conn, line *irc.Line) {
             fmt.Printf("Connect handler\n")
-            conn.Privmsg("nickserv", "identify " + config.Name + " " + config.Password)
+            conn.Privmsg("nickserv", "identify " + config.Username + " " + config.Password)
         })
 
     // Handle disconnect
