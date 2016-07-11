@@ -11,7 +11,7 @@ import (
 
 func sendMessage(conn *irc.Conn, destination string, message string) {
     conn.Privmsg(destination, message)
-    conn.Quit("Work done!")
+    conn.Quit("Quit")
 }
 
 type Config struct {

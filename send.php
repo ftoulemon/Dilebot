@@ -35,7 +35,7 @@
                         </span>
                         <p class="output">
                             <?php
-                                $command = "./dilebot " . $_POST["dest"] . " \"" . $_POST["message"] . "\" 2>&1";
+                                $command = "./dilebot \"" . $_POST["dest"] . "\" \"" . $_POST["message"] . "\" 2>&1";
                                 exec($command, $output, $return_val);
                                 foreach($output as $line) {
                                     echo $line . "</br>";
