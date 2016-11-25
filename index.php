@@ -19,9 +19,12 @@
         }
     </script>
 
-    <nav class="top-nav green">
-        <div class="container">
-            <div class="nav-wrapper"><a class="page-title">IRC Bot</a></div>
+    <nav>
+        <div class="nav-wrapper z-depth-3 green">
+            <a href="#" class="brand-logo"><i class="material-icons">message</i>Dilebot</a>
+            <ul class="right">
+                <li><a href="#" onclick="window.location.href = window.location.port + '//' + window.location.hostname;"><i class="material-icons">home</i></a></li>
+            </ul>
         </div>
     </nav>
 
@@ -41,7 +44,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <button class="btn waves-effect waves-light" type="submit" name="action" onclick="showProgress(this);">Submit
+                    <button class="btn waves-effect waves-light green" type="submit" name="action" onclick="showProgress(this);">Submit
                         <i class="material-icons right">send</i>
                     </button>
                     <div id="progressAnim" class="progress" style="display:none">

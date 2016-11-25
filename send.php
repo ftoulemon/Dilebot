@@ -19,9 +19,12 @@
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script type="text/javascript" src="js/materialize.min.js"></script>
 
-    <nav class="top-nav green">
-        <div class="container">
-            <div class="nav-wrapper"><a class="page-title">IRC Bot</a></div>
+    <nav>
+        <div class="nav-wrapper z-depth-3 green">
+            <a href="#" class="brand-logo"><i class="material-icons">message</i>Dilebot</a>
+            <ul class="right">
+                <li><a href="#" onclick="window.location.href = window.location.port + '//' + window.location.hostname;"><i class="material-icons">home</i></a></li>
+            </ul>
         </div>
     </nav>
 
@@ -29,7 +32,7 @@
         <div class="container">
             <div class="row">
                 <div class="col s12">
-                    <div class="card-panel teal white-text">
+                    <div class="card-panel teal white-text green">
                         <span class="card-title">
                             <?php echo $_POST["message"]; ?>
                         </span>
