@@ -14,6 +14,8 @@ The user's message is sent to a small Go program which connects to the IRC serve
 
 The webpage uses [mechanizecss](http://materializecss.com/).
 
+<img src="https://raw.githubusercontent.com/ftoulemon/Dilebot/master/img/screenshot.png" width="400">
+
 ## Go client
 
 The Go script uses [goirc](https://github.com/fluffle/goirc/). I also use this script to be notified of events from my server.
